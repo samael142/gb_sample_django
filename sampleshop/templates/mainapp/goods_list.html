@@ -10,6 +10,7 @@
         <th>Единица измерения</th>
         <th>Поставщик</th>
         <th>Категория</th>
+        <th>Сайт</th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +24,11 @@
             <td>
                 {% for category in object.category.all %}
                 {{ category.title }}
+                {% endfor %}
+            </td>
+            <td>
+                {% for site in object.site.all %}
+                {{ site.name }}
                 {% endfor %}
             </td>
         </tr>

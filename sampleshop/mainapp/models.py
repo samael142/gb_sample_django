@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.sites.models import Site
+from django.contrib.sites.managers import CurrentSiteManager
 
 
 class Category(models.Model):
@@ -6,6 +8,10 @@ class Category(models.Model):
         verbose_name='Название',
         max_length=255
     )
+
+    site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True)
+
+    objects = CurrentSiteManager()
 
     def __str__(self):
         return self.title
@@ -48,6 +54,10 @@ class Good(models.Model):
     )
 
     category = models.ManyToManyField(Category)
+
+    site = models.ManyToManyField(Site)
+
+    objects = CurrentSiteManager()
 
     def __str__(self):
         return self.title
