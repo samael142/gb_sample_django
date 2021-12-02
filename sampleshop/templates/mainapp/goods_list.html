@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Дата поступления</th>
+        <th>Цена</th>
+        <th>Единица измерения</th>
+        <th>Поставщик</th>
+        <th>Категория</th>
+        <th>Сайт</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+        <tr>
+            <td>{{ object.title }}</td>
+            <td>{{ object.receipt_date }}</td>
+            <td>{{ object.price }}</td>
+            <td>{{ object.unit }}</td>
+            <td>{{ object.vendor }}</td>
+            <td>
+                {% for category in object.category.all %}
+                {{ category.title }}
+                {% endfor %}
+            </td>
+            <td>
+                {% for site in object.site.all %}
+                {{ site.name }}
+                {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+<a class="btn btn-primary" href="#" role="button">Добавить</a>
+
+{% endblock %}
